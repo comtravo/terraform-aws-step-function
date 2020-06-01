@@ -43,8 +43,8 @@ resource "aws_iam_role" "sfn" {
 }
 
 resource "aws_iam_role_policy" "sfn" {
-  name = var.sfn_name
-  role = aws_iam_role.sfn.id
+  name   = var.sfn_name
+  role   = aws_iam_role.sfn.id
   policy = data.aws_iam_policy_document.policy.json
 }
 
@@ -69,19 +69,19 @@ locals {
     StartAt = "FirstState",
     States = {
       FirstState = {
-        Type = "Task",
+        Type     = "Task",
         Resource = module.lambda.arn,
-        Next = "wait_using_seconds"
+        Next     = "wait_using_seconds"
       },
       wait_using_seconds = {
-        Type = "Wait",
+        Type    = "Wait",
         Seconds = 10,
-        Next = "FinalState"
+        Next    = "FinalState"
       },
       FinalState = {
-        Type = "Task",
+        Type     = "Task",
         Resource = module.lambda.arn,
-        End = true
+        End      = true
       }
     }
   }
@@ -91,15 +91,15 @@ module "sfn" {
 
   source = "../../"
 
-  role_arn =  aws_iam_role.sfn.arn
+  role_arn = aws_iam_role.sfn.arn
   config = {
-    name = var.sfn_name
+    name       = var.sfn_name
     definition = jsonencode(local.sfn_definition)
   }
 }
 
 output "arn" {
-  value       = module.sfn.state_machine_arn
+  value = module.sfn.state_machine_arn
 }
 
 module "lambda" {

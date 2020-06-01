@@ -39,9 +39,9 @@ module "sfn" {
 
   source = "../../"
 
-  role_arn =  aws_iam_role.sfn.arn
+  role_arn = aws_iam_role.sfn.arn
   config = {
-    name = var.sfn_name
+    name       = var.sfn_name
     definition = <<DEF
 {
   "Comment": "A Hello World example of the Amazon States Language using Pass states",
@@ -64,5 +64,5 @@ DEF
 }
 
 output "arn" {
-  value       = module.sfn.state_machine_arn
+  value = module.sfn.state_machine_arn
 }

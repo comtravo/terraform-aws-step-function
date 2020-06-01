@@ -1,8 +1,8 @@
-module github.com/comtravo/terraform-aws-vpc/tests
+module github.com/comtravo/terraform-aws-step-function/test
 
 go 1.14
 
 require (
-	github.com/gruntwork-io/terratest v0.27.3
-	github.com/stretchr/testify v1.5.1
+	github.com/gruntwork-io/terratest v0.28.1
+	github.com/stretchr/testify v1.6.0
 )
