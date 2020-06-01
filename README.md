@@ -1,3 +1,18 @@
+# Terraform AWS module for AWS Step Functions
+
+## Introduction  
+This module creates an AWS Step functions.
+
+## Usage  
+Checkout [examples](./examples) on how to use this module.
+## Authors
+
+Module managed by [Comtravo](https://github.com/comtravo).
+
+## License
+
+MIT Licensed. See LICENSE(./LICENSE) for full details.
+
 ## Requirements
 
 | Name | Version |
