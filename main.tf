@@ -1,5 +1,5 @@
 /**
-* # Terraform AWS module for AWS Step Functions
+* # Terraform AWS module for AWS Step Functions.
 *
 * ## Introduction
 * This module creates an AWS Step functions.
