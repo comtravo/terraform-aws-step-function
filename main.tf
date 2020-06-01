@@ -1,8 +1,8 @@
 /**
-* # Terraform AWS module for AWS Step Functions.
+* # Terraform AWS module for AWS Step Function.
 *
 * ## Introduction
-* This module creates an AWS Step functions.
+* This module creates an AWS Step function.
 *
 * ## Usage
 * Checkout [examples](./examples) on how to use this module.
@@ -12,7 +12,7 @@
 *
 * ## License
 *
-* MIT Licensed. See LICENSE(./LICENSE) for full details.
+* MIT Licensed. See [LICENSE](./LICENSE) for full details.
 */
 
 variable config {
