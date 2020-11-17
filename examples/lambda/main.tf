@@ -104,7 +104,7 @@ output "arn" {
 
 module "lambda" {
 
-  source = "github.com/comtravo/terraform-aws-lambda?ref=3.0.0"
+  source = "github.com/comtravo/terraform-aws-lambda?ref=4.0.0"
 
   file_name     = "${path.module}/../../test/fixtures/foo.zip"
   function_name = local.lambda_name
