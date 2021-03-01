@@ -104,12 +104,12 @@ output "arn" {
 
 module "lambda" {
 
-  source = "github.com/comtravo/terraform-aws-lambda?ref=4.0.0"
+  source = "github.com/comtravo/terraform-aws-lambda?ref=5.0.0"
 
   file_name     = "${path.module}/../../test/fixtures/foo.zip"
   function_name = local.lambda_name
   handler       = "index.handler"
-  role          = local.lambda_name
+  role          = aws_iam_role.lambda.arn
   trigger = {
     type = "step-function"
   }

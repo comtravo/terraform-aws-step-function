@@ -1,13 +1,12 @@
-// +build localstack
+// +build aws
 
 package test
 
 import (
 	"fmt"
-	"path"
+	"regexp"
 	"testing"
 
-	"github.com/gruntwork-io/terratest/modules/files"
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/require"
@@ -40,11 +39,6 @@ func TestSFN_lambda(t *testing.T) {
 }
 
 func SetupExample(t *testing.T, sfnName string, exampleDir string) *terraform.Options {
-
-	localstackConfigDestination := path.Join(exampleDir, "localstack.tf")
-	files.CopyFile("fixtures/localstack.tf", localstackConfigDestination)
-	t.Logf("Copied localstack file to: %s", localstackConfigDestination)
-
 	terraformOptions := &terraform.Options{
 		TerraformDir: exampleDir,
 		Vars: map[string]interface{}{
@@ -62,5 +56,8 @@ func TerraformApplyAndValidateOutputs(t *testing.T, terraformOptions *terraform.
 	require.Equal(t, resourceCount.Change, 0)
 	require.Equal(t, resourceCount.Destroy, 0)
 
-	require.Regexp(t, terraform.Output(t, terraformOptions, "arn"), fmt.Sprintf("arn:aws:states:us-east-1:000000000000:stateMachine:%s", terraformOptions.Vars["sfn_name"]))
+	require.Regexp(t,
+		regexp.MustCompile(fmt.Sprintf("arn:aws:states:us-east-1:\\d{12}:stateMachine:%s", terraformOptions.Vars["sfn_name"])),
+		terraform.Output(t, terraformOptions, "arn"),
+	)
 }
