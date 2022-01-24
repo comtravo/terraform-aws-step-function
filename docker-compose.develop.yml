@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  terraform:
-    command: bash
-    volumes:
-      - ./:/go/src/github.com/comtravo/terraform-aws-step-function
-    environment:
-      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
